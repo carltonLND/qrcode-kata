@@ -14,5 +14,11 @@ export function writeToMarkdown(data: string) {
 }
 
 export function createMarkdownData(url: string, channelName: string): string {
-  return `${channelName} - ${url}\n\n![${channelName} qrcode](./outputImages/qrcode_${channelName}.png)\n\n---\n\n`;
+  return `${channelName} - ${url}
+
+![${channelName} qrcode](./outputImages/qrcode_${channelName}.png)
+
+---
+
+`;
 }

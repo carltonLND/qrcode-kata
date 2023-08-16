@@ -1,8 +1,33 @@
-import { sum } from "./skeleton";
+import {
+  getChannelName,
+  createQRCode,
+  writeToMarkdown,
+  createMarkdownData,
+} from "./generateCode";
 
-// Call your function of interest, here, instead of sum.
-//You can use vscode's "Debug main.ts" launcher to debug, starting here.
+const urls = [
+  "https://www.youtube.com/@codeorg",
+  "https://www.youtube.com/@CoderbyteDevelopers",
+  "https://www.youtube.com/@Codesmith",
+  "https://www.youtube.com/@craigndave",
+  "https://www.youtube.com/@decomplexify",
+  "https://www.youtube.com/@Fireship",
+  "https://www.youtube.com/@freecodecamp",
+  "https://www.youtube.com/@funfunfunction",
+  "https://www.youtube.com/@KevinPowell",
+  "https://www.youtube.com/@NetNinja",
+  "https://www.youtube.com/@TraversyMedia",
+  "https://www.youtube.com/@WesBos",
+];
 
-const answer = sum(10, 200);
+async function main(urls: string[]) {
+  let markdownString = ``;
+  for (const url of urls) {
+    const channelName = getChannelName(url);
+    await createQRCode(url, channelName);
+    markdownString += createMarkdownData(url, channelName);
+  }
+  writeToMarkdown(markdownString);
+}
 
-console.log({ answer });
+void main(urls);
